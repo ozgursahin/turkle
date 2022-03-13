@@ -11,6 +11,28 @@ body {
     background-repeat: no-repeat;
 }
 
+.settings {
+    display: flex;
+    background: #343434;
+    padding: 0.2vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings button {
+    font-family: 'Inknut Antiqua';
+    font-size: 2vh;
+    font-weight: bold;
+    background: #59325e;
+    color: white;
+    border: 1px solid #242424;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px 1px #2e2e2e;
+    margin: 0.3vh;
+    padding: 0.5vh 1.5vh;
+    touch-action: manipulation;
+}
+
 .turkle-instance {
     display: flex;
     flex-direction: column;
@@ -36,14 +58,15 @@ body {
 }
 
 .letter input[type="text"] {
-    width: 10vh;
-    height: 10vh;
+    width: 8vh;
+    height: 8vh;
     outline: none;
     font-family: 'Inknut Antiqua', serif;
     font-size: 5vh;
     text-align: center;
     border-radius: 5px;
     box-shadow: 0px 0px 2px 1px #3c3c3c;
+    touch-action: manipulation;
 }
 
 .letter input[type="text"].green {
