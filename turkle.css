@@ -64,6 +64,7 @@ body {
 #keyboard {
     margin: 3vh 1vh;
     user-select: none;
+    touch-action: manipulation;
 }
 
 .keyboard-row {
@@ -83,6 +84,7 @@ body {
     margin: 0.3vmin 0.6vmin;
     border-radius: 4px;
     user-select: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     flex: 1;
     display: flex;
     justify-content: center;
