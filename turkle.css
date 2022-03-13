@@ -70,7 +70,6 @@ body {
     display: flex;
     width: 100%;
     margin: 0 auto 8px;
-    touch-action: manipulation;
 }
 
 .keyboard-button {
@@ -80,15 +79,14 @@ body {
     font-size: 3vh;
     font-weight: bold;
     border: 1px solid lightgray;
-    padding: 0px 10px;
-    margin: 0 6px 0 0;
+    padding: 0px 3.6vmin;
+    margin: 0.3vmin 0.6vmin;
     border-radius: 4px;
     user-select: none;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     transition: box-shadow .15s, transform .15s;
@@ -144,8 +142,8 @@ body {
     }
 
     .keyboard-button {
-        width: 8vmin;
-        height: 9vmin;
+        width: 7vmin;
+        height: 14vmin;
     }
 }
 
