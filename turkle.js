@@ -193,6 +193,10 @@ const newGame = (cleanState) => {
         if (gameState) {
             targetWord = gameState.targetWord;
             submittedWords = gameState.submittedWords;
+        } else {
+            targetWord = allowedWords[Math.floor(Math.random() * allowedWords.length)];
+            submittedWords = [];
+            saveGameState();
         }
     } else {
         targetWord = allowedWords[Math.floor(Math.random() * allowedWords.length)];
