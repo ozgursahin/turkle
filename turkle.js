@@ -53,7 +53,7 @@ const displayMessage = (message, color, duration) => {
         },
         offset: {
             x: 0,
-            y: 30
+            y: 100
         },
         onClick: function () {} // Callback after click
     }).showToast();
