@@ -5,9 +5,10 @@ const ALLOWED_KEYS = [
 ];
 let targetWord;
 let activeRow;
-let buttonMap;
+let buttonMap = {};
 let isGameFinished;
 let submittedWords;
+let toastMessage;
 
 const docReady = (fn) => {
     // see if DOM is already available
@@ -37,7 +38,7 @@ const changeKeyColor = (keyChar, colorClass) => {
 };
 
 const displayMessage = (message, color, duration) => {
-    Toastify({
+    toastMessage = Toastify({
         text: message,
         duration: duration ? duration : 1000,
         gravity: "top", // `top` or `bottom`
@@ -49,6 +50,10 @@ const displayMessage = (message, color, duration) => {
             "font-family": "'Inknut Antiqua', serif",
             "font-size": "2vh",
             "border-radius": "5px"
+        },
+        offset: {
+            x: 0,
+            y: 30
         },
         onClick: function () {} // Callback after click
     }).showToast();
@@ -165,22 +170,13 @@ const loadGameState = () => {
     return gameState && JSON.parse(gameState);
 };
 
-const initKeyboardButtons = () => {
-    buttonMap = {};
-
-    let keyboardButtons = document.querySelectorAll('.keyboard-button');
-    keyboardButtons.forEach(keyboardButton => {
-        buttonMap[keyboardButton.getAttribute('data-key').toLocaleLowerCase('tr')] = keyboardButton;
-        keyboardButton.addEventListener('click', event => {
-            const keyEntered = event.currentTarget.getAttribute('data-key');
-            keyEnteredFunc(keyEntered);
-        });
+const clearKeyClasses = () => {
+    Object.keys(buttonMap).forEach(key => {
+        buttonMap[key].className = "keyboard-button default";
     });
-}
+};
 
 const newGame = (cleanState) => {
-    initKeyboardButtons();
-
     const filledInputs = document.querySelectorAll('input.filled');
     [...filledInputs].forEach(filledInput => {
         filledInput.className = 'default';
@@ -202,6 +198,11 @@ const newGame = (cleanState) => {
         targetWord = allowedWords[Math.floor(Math.random() * allowedWords.length)];
         submittedWords = [];
         saveGameState();
+        clearKeyClasses();
+    }
+
+    if (toastMessage) {
+        toastMessage.hideToast();
     }
 
     activeRow = 1;
@@ -214,6 +215,15 @@ const newGame = (cleanState) => {
 };
 
 docReady(function () {
+    let keyboardButtons = document.querySelectorAll('.keyboard-button');
+    keyboardButtons.forEach(keyboardButton => {
+        buttonMap[keyboardButton.getAttribute('data-key').toLocaleLowerCase('tr')] = keyboardButton;
+        keyboardButton.addEventListener('click', event => {
+            const keyEntered = event.currentTarget.getAttribute('data-key');
+            keyEnteredFunc(keyEntered);
+        });
+    });
+
     document.addEventListener('keydown', (event) => {
         const name = event.key;
         const code = event.code;
